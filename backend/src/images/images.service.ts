@@ -32,6 +32,7 @@ export class ImagesService {
       this.getPhotos(),
       this.getImages(),
     ]);
+    console.log(photos);
     const data = [...photos, ...images];
     return {
       count: data.length,
