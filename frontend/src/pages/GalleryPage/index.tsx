@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Carousel from "../../components/common/Carousel";
 import Gallery from "../../components/common/Gallery";
 import Toggle from "../../components/common/Toggle";
-import { IImage } from "../../interfaces/image";
-import { getImages } from "../../services/imagesApi";
+import { useImages } from "../../hooks/useImages";
 
 const GalleryPage = () => {
   const [isCarousel, setIsCarousel] = useState<boolean>(false);
-  const [images, setImages] = useState<IImage[]>([]);
-
-  useEffect(() => {
-    getImages().then(response => {
-      const data = response.data;
-      setImages(data);
-    });
-  }, []);
+  const images = useImages();
 
   const changeLayout = () => setIsCarousel((value) => !value);
 

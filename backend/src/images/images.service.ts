@@ -28,11 +28,8 @@ export class ImagesService {
   }
 
   async findAll(): Promise<PaginatedDto<ImageDto>> {
-    const [[photos], [images]] = await Promise.all([
-      this.getPhotos(),
-      this.getImages(),
-    ]);
-    console.log(photos);
+    const [photos] = await this.getPhotos();
+    const [images] = await this.getImages();
     const data = [...photos, ...images];
     return {
       count: data.length,
